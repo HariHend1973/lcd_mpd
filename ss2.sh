@@ -10,31 +10,31 @@ if [ $signal -eq 0 ]
 	echo "signal0"
 	echo " $ss"
 fi
-if [ $signal -gt 0 ] && [ $signal -lt 20 ]
+if [ $signal -gt 0 ] && [ $signal -lt 21 ]
    then
 	#echo -n "4G Signal: $(echo $'\xFF\xDB\xDB\xDB\xDB') $ss"
 	echo "signal20"
 	echo " $ss"
 fi
-if [ $signal -gt 19 ] && [ $signal -lt 40 ]
+if [ $signal -gt 20 ] && [ $signal -lt 41 ]
    then
 	#echo -n "4G Signal: $(echo $'\xFF\xFF\xDB\xDB\xDB') $ss"
 	echo "signal40"
 	echo " $ss"
 fi
-if [ $signal -gt 39 ] && [ $signal -lt 60 ]
+if [ $signal -gt 40 ] && [ $signal -lt 61 ]
    then
 	#echo -n "4G Signal: $(echo $'\xFF\xFF\xFF\xDB\xDB') $ss"
 	echo "signal60"
 	echo " $ss"
 fi
-if [ $signal -gt 59 ] && [ $signal -lt 80 ]
+if [ $signal -gt 60 ] && [ $signal -lt 81 ]
    then
 	#echo -n "4G Signal: $(echo $'\xFF\xFF\xFF\xFF\xDB') $ss"
 	echo "signal80"
 	echo " $ss"
 fi
-if [ $signal -gt 79 ] && [ $signal -lt 101 ]
+if [ $signal -gt 80 ] && [ $signal -lt 101 ]
    then
 	#echo -n "4G Signal: $(echo $'\xFF\xFF\xFF\xFF\xFF') $ss"
 	echo "signal100"
