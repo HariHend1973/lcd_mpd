@@ -64,7 +64,7 @@ ENABLE = 0b00000100 # Enable bit
 
 # Timing constants
 E_PULSE = 0.0005
-E_DELAY = 0.0005 
+E_DELAY = 0.0005
 
 #Open I2C interface
 bus = smbus.SMBus(0)  # Rev 1 Pi uses 0
@@ -75,7 +75,7 @@ def lcd_init():
   lcd_byte(0x33,LCD_CMD) # 110011 Initialise
   lcd_byte(0x32,LCD_CMD) # 110010 Initialise
   lcd_byte(0x06,LCD_CMD) # 000110 Cursor move direction
-  lcd_byte(0x0C,LCD_CMD) # 001100 Display On,Cursor Off, Blink Off 
+  lcd_byte(0x0C,LCD_CMD) # 001100 Display On,Cursor Off, Blink Off
   lcd_byte(0x28,LCD_CMD) # 101000 Data length, number of lines, font size
   lcd_byte(0x01,LCD_CMD) # 000001 Clear display
   time.sleep(E_DELAY)
@@ -121,6 +121,7 @@ def lcd_custom(charPos,charDef):
     lcd_byte(line,LCD_CHR)
 
 def ss_get(b3_list,wifi):
+  # get modem signal
   if b3_list[0] == "signal0":
     lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
   if b3_list[0] == "signal20":
@@ -134,8 +135,9 @@ def ss_get(b3_list,wifi):
   if b3_list[0] == "signal100":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
   del b3_list[:]
-	
+
 def vol_get():
+  # get voulme value
   global vol
   g=os.popen("mpc status | grep volume | awk '{print $1, $2}'")
   vol = ""
@@ -146,6 +148,7 @@ def vol_get():
   return (vol)
 
 def mpc_get():
+  # get mpc current
   vol_get()
   f=os.popen("mpc current")
   global station
@@ -161,6 +164,7 @@ def mpc_get():
     return (station)
 
 def ud_get(b2):
+  # get tx/rx
   if len(b2) == 20: b2=chr(5) + chr(7) + b2
   if len(b2) == 19: b2=chr(5) + chr(7) + b2
   if len(b2) == 18: b2=chr(5) + chr(7) + b2
@@ -174,9 +178,11 @@ def ud_get(b2):
   lcd_string(b2,LCD_LINE_2)
 
 def temp_time_get(b4):
+  # get time and temperature
   lcd_string("  " + chr(0) + b4 + " " + chr(6) + time.strftime("%H:%M:%S"),LCD_LINE_4)
 
 def mpd_head_get():
+  # get header
   lcd_string("      " + chr(2) + " MPD " + chr(2) + "     ", LCD_LINE_1)
 
 def main():
@@ -192,8 +198,8 @@ def main():
   lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # up
   lcd_custom(6,[0x1F,0x1F,0x0E,0x04,0x04,0x0A,0x11,0x1F]) # clock
   lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
-  
-  while True: 
+
+  while True:
 	lcd_b2=open("/root/mpdlcd/lcd_b2.txt",'r') # txrx
 	lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
 	lcd_wifi=open("/root/mpdlcd/lcd_wifi.txt",'r') # wifi
@@ -212,11 +218,11 @@ def main():
 	ud_get(b2)
 	ss_get(b3_list,wifi)
 	temp_time_get(b4)
-	
+
 	mpc_get()
 	old_station = station
 	for j in range (0, len(station)):
-		lcd_text = station[j:(j+20)] 
+		lcd_text = station[j:(j+20)]
 		lcd_string(lcd_text,LCD_LINE_1)
 		temp_time_get(b4)
 		ud_get(b2)
