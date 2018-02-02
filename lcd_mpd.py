@@ -133,7 +133,8 @@ def ss_get(b3_list,wifi):
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
   if b3_list[0] == "signal100":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
-
+  del b3_list[:]
+	
 def vol_get():
   global vol
   g=os.popen("mpc status | grep volume | awk '{print $1, $2}'")
