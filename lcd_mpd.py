@@ -185,6 +185,10 @@ def mpd_head_get():
   # get header
   lcd_string("      " + chr(2) + " MPD " + chr(2) + "     ", LCD_LINE_1)
 
+def mem_get(disk_list):
+  lcd_string(disk_list[2], LCD_LINE_2)
+  lcd_string(disk_list[3], LCD_LINE_3)
+
 def main():
   # Main program block
 
@@ -222,18 +226,26 @@ def main():
 	mpc_get()
 	old_station = station
 	for j in range (0, len(station)):
-		lcd_text = station[j:(j+20)]
-		lcd_string(lcd_text,LCD_LINE_1)
-		temp_time_get(b4)
-		ud_get(b2)
-		temp_time_get(b4)
-		#lcd_string(str_pad,LCD_LINE_1)
-		ss_get(b3_list,wifi)
-		mpc_get()
-		if station != old_station: break
-		old_station=station
-		#time.sleep(0.5)
-    del b3_list[:]
+                lcd_text = station[j:(j+20)]
+                lcd_string(lcd_text,LCD_LINE_1)
+                temp_time_get(b4)
+                if j == 0:
+                        ud_get(b2)
+                        temp_time_get(b4)
+                        #lcd_string(str_pad,LCD_LINE_1)
+                        ss_get(b3_list,wifi)
+                        mpc_get()
+                        if station != old_station: break
+                        old_station=station
+                        #time.sleep(0.5)
+                if j == (len(station)//3):
+                        disk_get(disk_list)
+                        temp_time_get(b4)
+                if j == (len(station)//3+len(station)//3):
+                        mem_get(disk_list)
+                        temp_time_get(b4)
+        del b3_list[:]
+        del disk_list[:]
 
 if __name__ == '__main__':
   try:
