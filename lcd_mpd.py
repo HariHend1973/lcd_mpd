@@ -233,16 +233,19 @@ def main():
                 lcd_string(lcd_text,LCD_LINE_1)
                 temp_time_get(b4)
                 if j == 0:
+                        lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
                         ud_get(b2)
                         temp_time_get(b4)
                         #lcd_string(str_pad,LCD_LINE_1)
                         ss_get(b3_list,wifi)
                 if j == (len(station)//3):
+                        lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
                         disk_get(disk_list)
                         temp_time_get(b4)
                 if j == (len(station)//3+len(station)//3):
+                        lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
                         mem_get(disk_list)
                         temp_time_get(b4)
