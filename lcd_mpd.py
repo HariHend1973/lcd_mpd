@@ -234,16 +234,16 @@ def main():
                         temp_time_get(b4)
                         #lcd_string(str_pad,LCD_LINE_1)
                         ss_get(b3_list,wifi)
-                        mpc_get()
-                        if station != old_station: break
-                        old_station=station
-                        #time.sleep(0.5)
                 if j == (len(station)//3):
                         disk_get(disk_list)
                         temp_time_get(b4)
                 if j == (len(station)//3+len(station)//3):
                         mem_get(disk_list)
                         temp_time_get(b4)
+                mpc_get()
+                if station != old_station: break
+                old_station=station
+                #time.sleep(0.5)
         del b3_list[:]
         del disk_list[:]
 
