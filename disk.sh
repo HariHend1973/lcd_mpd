@@ -12,7 +12,7 @@ buffer=$(free | grep Mem | awk '{print $6}')
 cached=$(free | grep Mem | awk '{print $7}')
 
 total=$((total/1024))
-used3=$((used/1024))
+used2=$((used2/1024))
 free=$((free/1024))
 shared=$((shared/1024))
 buffer=$((buffer/1024))
@@ -20,5 +20,5 @@ cached=$((cached/1024))
 
 echo "S:$size U:$used1"
 echo "available: $avail"
-echo "T:"$total"M U:"$used"M F:"$free"M"
+echo "T:"$total"M U:"$used2"M F:"$free"M"
 echo "B:"$buffer"M C:"$cached"M S:"$shared"M"
