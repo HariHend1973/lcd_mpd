@@ -3,7 +3,7 @@ stty -F /dev/ttyACM0 9600 cs8 -cstopb -parenb -icanon min 1 time 1
 state="false"
 while true; do
         read -n 8 LINE < /dev/ttyACM0
-        LINE=$(echo -n $LINE | sed 's/[ \t\r\n]+//g')
+        LINE=$(echo -n $LINE | sed 's/[ \t\r\n]\+//g')
         echo $LINE
         # PREV
         if [[ "$LINE" == "FF22DD" ]]
