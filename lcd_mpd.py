@@ -135,7 +135,6 @@ def ss_get(b3_list,wifi):
   if b3_list[0] == "signal100":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
 
-
 def vol_get():
   # get voulme value
   global vol
@@ -184,6 +183,10 @@ def temp_time_get(b4):
 def mpd_head_get():
   # get header
   lcd_string("      " + chr(2) + " MPD " + chr(2) + "     ", LCD_LINE_1)
+
+def disk_get(disk_list):
+  lcd_string(disk_list[0], LCD_LINE_2)
+  lcd_string(disk_list[1], LCD_LINE_3)
 
 def mem_get(disk_list):
   lcd_string(disk_list[2], LCD_LINE_2)
