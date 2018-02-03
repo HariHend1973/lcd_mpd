@@ -20,5 +20,5 @@ cached=$((cached/1024))
 
 echo "S:$size U:$used1"
 echo "available: $avail"
-echo "T:"$total"M U:"$used2"M F:"$free"M"
-echo "B:"$buffer"M C:"$cached"M S:"$shared"M"
+echo "T:"$total"M U:"$used2"M S:"$shared"M"
+echo "B:"$buffer"M C:"$cached"M F:"$free"M"
