@@ -224,7 +224,6 @@ def proc_get(disk_list):
 
 def main():
   # Main program block
-
   # Initialise display
   lcd_init()
   lcd_custom(0,[0x04,0x0A,0x0A,0x0E,0x0E,0x1F,0x1F,0x0E]) # thermometer
@@ -240,12 +239,9 @@ def main():
 	lcd_b2=open("/root/mpdlcd/lcd_b2.txt",'r') # txrx
 	lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
 	lcd_wifi=open("/root/mpdlcd/lcd_wifi.txt",'r') # wifi
-
 	b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
 
-
 	disk_list=open('/root/mpdlcd/lcd_disk.txt').read().splitlines()
-
 
 	b2=lcd_b2.read()
 	b4=lcd_b4.read()
