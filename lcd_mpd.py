@@ -243,6 +243,10 @@ def main():
 
 	b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
 
+
+	disk_list=open('/root/mpdlcd/lcd_disk.txt').read().splitlines()
+
+
 	b2=lcd_b2.read()
 	b4=lcd_b4.read()
 	wifi=lcd_wifi.read()
