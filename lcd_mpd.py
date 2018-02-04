@@ -221,7 +221,6 @@ def proc_get(disk_list):
   lcd_string(chr(1) + chr(3) + chr(4) + disk_list[4], LCD_LINE_2)
   lcd_string(chr(1) + chr(3) + chr(4) + disk_list[5], LCD_LINE_3)
 
-
 def main():
   # Main program block
   # Initialise display
@@ -240,7 +239,6 @@ def main():
 	lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
 	lcd_wifi=open("/root/mpdlcd/lcd_wifi.txt",'r') # wifi
 	b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
-
 	disk_list=open('/root/mpdlcd/lcd_disk.txt').read().splitlines()
 
 	b2=lcd_b2.read()
