@@ -235,28 +235,77 @@ def main():
   #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
 
   while True:
-	lcd_b2=open("/root/mpdlcd/lcd_b2.txt",'r') # txrx
-	lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
-	lcd_wifi=open("/root/mpdlcd/lcd_wifi.txt",'r') # wifi
-	b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
-	disk_list=open('/root/mpdlcd/lcd_disk.txt').read().splitlines()
+        lcd_b2=open("/root/mpdlcd/lcd_b2.txt",'r') # txrx
+        lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
+        lcd_wifi=open("/root/mpdlcd/lcd_wifi.txt",'r') # wifi
 
-	b2=lcd_b2.read()
-	b4=lcd_b4.read()
-	wifi=lcd_wifi.read()
+        b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
+        disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
 
-	lcd_b2.close()
-	lcd_b4.close()
-	lcd_wifi.close()
+        b2=lcd_b2.read()
+        b4=lcd_b4.read()
+        wifi=lcd_wifi.read()
 
-	mpd_head_get()
-	ud_get(b2)
-	ss_get(b3_list,wifi)
-	temp_time_get(b4)
+        lcd_b2.close()
+        lcd_b4.close()
+        lcd_wifi.close()
 
-	mpc_get()
-	old_station = station
-	for j in range (0, len(station)):
+        mpd_head_get()
+        ud_get(b2)
+        ss_get(b3_list,wifi)
+        temp_time_get(b4)
+
+	      mpc_get()
+      	 old_station = station
+
+        while (len(station) == 0):
+                mpd_head_get()
+                ud_get(b2)
+                ss_get(b3_list,wifi)
+                temp_time_get(b4)
+                mpc_get()
+                if len(station) == 0:
+                        time.sleep(5)
+                else:
+                        break
+
+                mpd_head_get()
+                disk_get(disk_list)
+                temp_time_get(b4)
+                mpc_get()
+                if len(station) == 0:
+                        time.sleep(5)
+                else:
+                        break
+
+                mpd_head_get()
+                mem_get(disk_list)
+                temp_time_get(b4)
+                mpc_get()
+                if len(station) == 0:
+                        time.sleep(5)
+                else:
+                        break
+
+                mpd_head_get()
+                disk_get(disk_list)
+                temp_time_get(b4)
+                mpc_get()
+                if len(station) == 0:
+                        time.sleep(5)
+                else:
+                        break
+
+                mpd_head_get()
+                proc_get(disk_list)
+                temp_time_get(b4)
+                mpc_get()
+                if len(station) == 0:
+                        time.sleep(5)
+                else:
+                        break
+
+        for j in range (0, len(station)):
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 temp_time_get(b4)
