@@ -212,6 +212,16 @@ def mem_get(disk_list):
   lcd_string(chr(1) + disk_list[2], LCD_LINE_2)
   lcd_string(chr(1) + disk_list[3], LCD_LINE_3)
 
+def proc_get(disk_list):
+  lcd_custom(1,[0x1F,0x19,0x17,0x17,0x17,0x17,0x19,0x1F]) # CPU C
+  lcd_custom(3,[0x1F,0x13,0x15,0x15,0x13,0x17,0x17,0x1F]) # CPU P
+  lcd_custom(4,[0x1F,0x15,0x15,0x15,0x15,0x15,0x1B,0x1F]) # CPU U
+  #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
+  #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # reserved
+  lcd_string(chr(1) + chr(3) + chr(4) + disk_list[4], LCD_LINE_2)
+  lcd_string(chr(1) + chr(3) + chr(4) + disk_list[5], LCD_LINE_3)
+
+
 def main():
   # Main program block
 
@@ -259,15 +269,20 @@ def main():
                         temp_time_get(b4)
                         #lcd_string(str_pad,LCD_LINE_1)
                         ss_get(b3_list,wifi)
-                if j == (len(station)//3):
+                if j == (len(station)//4):
                         lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
                         disk_get(disk_list)
                         temp_time_get(b4)
-                if j == (len(station)//3+len(station)//3):
+                if j == (len(station)//4+len(station)//4):
                         lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
                         mem_get(disk_list)
+                        temp_time_get(b4)
+                if j == (len(station)//4+len(station)//4+len(station)//4):
+                        lcd_text = station[j:(j+20)]
+                        lcd_string(lcd_text,LCD_LINE_1)
+                        proc_get(disk_list)
                         temp_time_get(b4)
                 mpc_get()
                 if station != old_station: break
