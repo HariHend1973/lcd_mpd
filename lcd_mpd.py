@@ -264,37 +264,37 @@ def main():
                 ss_get(b3_list,wifi)
                 temp_time_get(b4)
                 mpc_get()
-                if len(station) == 0:
-                        time.sleep(5)
-                else:
-                        break
+                for h in range(20):
+                        time.sleep(0.1)
+                        if len(station) != 0:
+                                break
 
                 mpd_head_get()
                 disk_get(disk_list)
                 temp_time_get(b4)
                 mpc_get()
-                if len(station) == 0:
-                        time.sleep(5)
-                else:
-                        break
+                for h in range(20):
+                        time.sleep(0.1)
+                        if len(station) != 0:
+                                break
 
                 mpd_head_get()
                 mem_get(disk_list)
                 temp_time_get(b4)
                 mpc_get()
-                if len(station) == 0:
-                        time.sleep(5)
-                else:
-                        break
+                for h in range(20):
+                        time.sleep(0.1)
+                        if len(station) != 0:
+                                break
 
                 mpd_head_get()
                 proc_get(disk_list)
                 temp_time_get(b4)
                 mpc_get()
-                if len(station) == 0:
-                        time.sleep(5)
-                else:
-                        break
+                for h in range(20):
+                        time.sleep(0.1)
+                        if len(station) != 0:
+                                break
 
         for j in range (0, len(station)):
                 lcd_text = station[j:(j+20)]
