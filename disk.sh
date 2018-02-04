@@ -18,7 +18,14 @@ shared=$((shared/1024))
 buffer=$((buffer/1024))
 cached=$((cached/1024))
 
+cpu=$(top -bn 1 | head -n 5 | grep "CPU:" | awk '{print $1, $2}')
+usr=$(top -bn 1 | head -n 5 | grep "CPU:" | awk '{print $3, $4}')
+nic=$(top -bn 1 | head -n 5 | grep "CPU:" | awk '{print $7, $8}')
+irq=$(top -bn 1 | head -n 5 | grep "CPU:" | awk '{print $13, $14}')
+
 echo "S:$size U:$used1"
 echo "available: $avail"
 echo "T:"$total"M U:"$used2"M S:"$shared"M"
 echo "B:"$buffer"M C:"$cached"M F:"$free"M"
+echo $cpu" "$usr
+echo $nic" "$irq
