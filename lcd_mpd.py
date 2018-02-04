@@ -255,8 +255,8 @@ def main():
         ss_get(b3_list,wifi)
         temp_time_get(b4)
 
-	      mpc_get()
-      	 old_station = station
+        mpc_get()
+        old_station = station
 
         while (len(station) == 0):
                 mpd_head_get()
