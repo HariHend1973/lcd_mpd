@@ -288,15 +288,6 @@ def main():
                         break
 
                 mpd_head_get()
-                disk_get(disk_list)
-                temp_time_get(b4)
-                mpc_get()
-                if len(station) == 0:
-                        time.sleep(5)
-                else:
-                        break
-
-                mpd_head_get()
                 proc_get(disk_list)
                 temp_time_get(b4)
                 mpc_get()
