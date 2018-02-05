@@ -264,7 +264,7 @@ def main():
                 ss_get(b3_list,wifi)
                 mpc_get()
                 for h in range(20):
-				        temp_time_get(b4)
+                        temp_time_get(b4)
                         time.sleep(0.1)
                         if len(station) != 0:
                                 break
