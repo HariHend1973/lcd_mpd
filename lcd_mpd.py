@@ -234,38 +234,40 @@ def main():
         old_station = station
 
         while (len(station) == 0):
+                mpc_get()
+                if len(station) != 0:break
                 mpd_head_get()
                 ss_get(disk_list)
-                mpc_get()
                 for h in range(20):
                         temp_time_get(b4)
                         time.sleep(0.1)
-                        if len(station) != 0:
-                                break
+                        if len(station) != 0:break
+                mpc_get()
+                if len(station) != 0:break
                 mpd_head_get()
                 disk_get(disk_list)
-                mpc_get()
                 for h in range(20):
                         temp_time_get(b4)
                         time.sleep(0.1)
-                        if len(station) != 0:
-                                break
+                        if len(station) != 0:break
+                mpc_get()
+                if len(station) != 0:break
                 mpd_head_get()
                 mem_get(disk_list)
-                mpc_get()
                 for h in range(20):
                         temp_time_get(b4)
                         time.sleep(0.1)
-                        if len(station) != 0:
-                                break
+                        if len(station) != 0:break
+                mpc_get()
+                if len(station) != 0:break
                 mpd_head_get()
                 proc_get(disk_list)
-                mpc_get()
                 for h in range(20):
                         temp_time_get(b4)
                         time.sleep(0.1)
-                        if len(station) != 0:
-                                break
+                        if len(station) != 0:break
+                mpc_get()
+                if len(station) != 0:break
 
         for j in range (0, len(station)):
                 lcd_text = station[j:(j+20)]
