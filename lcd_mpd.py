@@ -152,18 +152,25 @@ def ss_get(disk_list):
   if disk_list[6] == "signal100":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
 
-def vol_get():
-  global vol
-  g=os.popen("mpc status | grep volume | awk '{print $1, $2}'")
-  vol = ""
-  for k in g.readlines():
-    vol += k
-  vol=vol.strip()
-  vol=vol.replace("volume", "vol", 1)
-  return (vol)
+def mpc_status_get():
+  global volume
+  global repeat
+  global random
+  volume = ""
+  repeat = ""
+  random = ""
+  g=os.popen("mpc status | grep volume")
+  for line in g:
+    status = line.strip().split()
+    # Array indices start at 0 unlike AWK
+
+  volume=status[0] + " " + status[1]
+  repeat=status[2] + " " + status[3]
+  random=status[4] + " " + status[5]
+  return (volume,repeat,random)
 
 def mpc_get():
-  vol_get()
+  mpc_status_get()
   f=os.popen("mpc current")
   global station
   station = ""
@@ -172,8 +179,8 @@ def mpc_get():
     #station=station[:-1]
     station=station.rstrip()
     str_pad = " " * 20
-    str_head = str_pad + vol + " " + chr(2) + chr(2) + " "
-    str_trail = " " + chr(2) + chr(2) + " " + vol
+    str_head = str_pad + volume + " " + chr(2) + chr(2) + " "
+    str_trail = " " + chr(2) + chr(2) + " " + volume + " " + repeat + " " + random
     station = str_head + station + str_trail
     return (station)
 
