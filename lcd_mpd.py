@@ -120,28 +120,26 @@ def lcd_custom(charPos,charDef):
   for line in charDef:
     lcd_byte(line,LCD_CHR)
 
-def ss_get(b3_list,wifi):
-  # get modem signal
+def ss_get(b3_list):
   lcd_custom(1,[0x15,0x1F,0x15,0x04,0x04,0x04,0x0E,0x1F]) # wifiy
   lcd_custom(3,[0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F]) # full block
   lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # empty block
   #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
   #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # reserved
   if b3_list[0] == "signal0":
-    lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
+    lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
   if b3_list[0] == "signal20":
-    lcd_string("4G " + chr(3) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
+    lcd_string("4G " + chr(3) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
   if b3_list[0] == "signal40":
-    lcd_string("4G " + chr(3) + chr(3) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
+    lcd_string("4G " + chr(3) + chr(3) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
   if b3_list[0] == "signal60":
-    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
+    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_lkst[2],LCD_LINE_3)
   if b3_list[0] == "signal80":
-    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(4) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
+    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
   if b3_list[0] == "signal100":
-    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + b3_list[1] + " " + chr(1) + wifi,LCD_LINE_3)
+    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
 
 def vol_get():
-  # get voulme value
   global vol
   g=os.popen("mpc status | grep volume | awk '{print $1, $2}'")
   vol = ""
@@ -152,7 +150,6 @@ def vol_get():
   return (vol)
 
 def mpc_get():
-  # get mpc current
   vol_get()
   f=os.popen("mpc current")
   global station
@@ -167,31 +164,28 @@ def mpc_get():
     station = str_head + station + str_trail
     return (station)
 
-def ud_get(b2):
-  # get tx/rx
+def ud_get(b3_list):
   #lcd_custom(1,[0x15,0x1F,0x15,0x04,0x04,0x04,0x0E,0x1F]) # reserved
   #lcd_custom(3,[0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F]) # reserved
   #lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # reserved
   lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # up
   lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
-  if len(b2) == 20: b2=chr(5) + chr(7) + b2
-  if len(b2) == 19: b2=chr(5) + chr(7) + b2
-  if len(b2) == 18: b2=chr(5) + chr(7) + b2
-  if len(b2) == 17: b2=chr(5) + chr(7) + b2
-  if len(b2) == 16: b2= " " + chr(5) + chr(7) + b2
-  if len(b2) == 15: b2= " " + chr(5) + chr(7) + b2
-  if len(b2) == 14: b2= "  " + chr(5) + chr(7) + b2
-  if len(b2) == 13: b2= "  " + chr(5) + chr(7) + b2
-  if len(b2) == 12: b2= "   " + chr(5) + chr(7) + b2
-  if len(b2) == 11: b2= "   " + chr(5) + chr(7) + b2
+  if len(b3_list[3]) == 20: b2=chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 19: b2=chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 18: b2=chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 17: b2=chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 16: b2= " " + chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 15: b2= " " + chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 14: b2= "  " + chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 13: b2= "  " + chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 12: b2= "   " + chr(5) + chr(7) + b3_list[3]
+  if len(b3_list[3]) == 11: b2= "   " + chr(5) + chr(7) + b3_list[3]
   lcd_string(b2,LCD_LINE_2)
 
 def temp_time_get(b4):
-  # get time and temperature
   lcd_string("  " + chr(0) + b4 + " " + chr(6) + time.strftime("%H:%M:%S"),LCD_LINE_4)
 
 def mpd_head_get():
-  # get header
   lcd_string("      " + chr(2) + " MPD " + chr(2) + "     ", LCD_LINE_1)
 
 def disk_get(disk_list):
@@ -200,14 +194,14 @@ def disk_get(disk_list):
   #lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # reserved
   #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
   #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # reserved
-  lcd_string(chr(1) + disk_list[0], LCD_LINE_2)
-  lcd_string(chr(1) + disk_list[1], LCD_LINE_3)
+  lcd_string(chr(1) + " " + disk_list[0], LCD_LINE_2)
+  lcd_string(chr(1) + " " + disk_list[1], LCD_LINE_3)
 
 def mem_get(disk_list):
   lcd_custom(1,[0x15,0x15,0x1F,0x1F,0x1F,0x1F,0x15,0x15]) # memory
   #lcd_custom(3,[0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F]) # reserved
   #lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # reserved
- #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
+  #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
   #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # reserved
   lcd_string(chr(1) + disk_list[2], LCD_LINE_2)
   lcd_string(chr(1) + disk_list[3], LCD_LINE_3)
@@ -218,41 +212,30 @@ def proc_get(disk_list):
   lcd_custom(4,[0x1F,0x15,0x15,0x15,0x15,0x15,0x1B,0x1F]) # CPU U
   #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
   #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # reserved
-  lcd_string(chr(1) + chr(3) + chr(4) + disk_list[4], LCD_LINE_2)
-  lcd_string(chr(1) + chr(3) + chr(4) + disk_list[5], LCD_LINE_3)
+  lcd_string(chr(1) + chr(3) + chr(4) + " " + disk_list[4], LCD_LINE_2)
+  lcd_string(chr(1) + chr(3) + chr(4) + " " + disk_list[5], LCD_LINE_3)
 
 def main():
   # Main program block
+
   # Initialise display
   lcd_init()
   lcd_custom(0,[0x04,0x0A,0x0A,0x0E,0x0E,0x1F,0x1F,0x0E]) # thermometer
-  #lcd_custom(1,[0x15,0x1F,0x15,0x04,0x04,0x04,0x0E,0x1F]) # wifiy
   lcd_custom(2,[0x00,0x02,0x03,0x02,0x0e,0x1e,0x0c,0x00]) # music note
-  #lcd_custom(3,[0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F]) # full block
-  #lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # empty block
-  #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # up
   lcd_custom(6,[0x1F,0x1F,0x0E,0x04,0x04,0x0A,0x11,0x1F]) # clock
-  #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
 
   while True:
-        lcd_b2=open("/root/mpdlcd/lcd_b2.txt",'r') # txrx
         lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
-        lcd_wifi=open("/root/mpdlcd/lcd_wifi.txt",'r') # wifi
 
         b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
         disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
 
-        b2=lcd_b2.read()
         b4=lcd_b4.read()
-        wifi=lcd_wifi.read()
-
-        lcd_b2.close()
         lcd_b4.close()
-        lcd_wifi.close()
 
         mpd_head_get()
-        ud_get(b2)
-        ss_get(b3_list,wifi)
+        ud_get(b3_list)
+        ss_get(b3_list)
         temp_time_get(b4)
 
         mpc_get()
@@ -260,15 +243,14 @@ def main():
 
         while (len(station) == 0):
                 mpd_head_get()
-                ud_get(b2)
-                ss_get(b3_list,wifi)
+                ud_get(b3_list)
+                ss_get(b3_list)
                 mpc_get()
                 for h in range(20):
                         temp_time_get(b4)
                         time.sleep(0.1)
                         if len(station) != 0:
                                 break
-
                 mpd_head_get()
                 disk_get(disk_list)
                 mpc_get()
@@ -277,7 +259,6 @@ def main():
                         time.sleep(0.1)
                         if len(station) != 0:
                                 break
-
                 mpd_head_get()
                 mem_get(disk_list)
                 mpc_get()
@@ -286,7 +267,6 @@ def main():
                         time.sleep(0.1)
                         if len(station) != 0:
                                 break
-
                 mpd_head_get()
                 proc_get(disk_list)
                 mpc_get()
@@ -303,10 +283,10 @@ def main():
                 if j == 0:
                         lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
-                        ud_get(b2)
+                        ud_get(b3_list)
                         temp_time_get(b4)
                         #lcd_string(str_pad,LCD_LINE_1)
-                        ss_get(b3_list,wifi)
+                        ss_get(b3_list)
                 if j == (len(station)//4):
                         lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
@@ -330,6 +310,7 @@ def main():
         del disk_list[:]
 
 if __name__ == '__main__':
+
   try:
     main()
   except KeyboardInterrupt:
