@@ -120,24 +120,37 @@ def lcd_custom(charPos,charDef):
   for line in charDef:
     lcd_byte(line,LCD_CHR)
 
-def ss_get(b3_list):
+def ss_get(disk_list):
+  # custom characters
   lcd_custom(1,[0x15,0x1F,0x15,0x04,0x04,0x04,0x0E,0x1F]) # wifiy
   lcd_custom(3,[0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F]) # full block
   lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # empty block
-  #lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # reserved
-  #lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # reserved
-  if b3_list[0] == "signal0":
-    lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
-  if b3_list[0] == "signal20":
-    lcd_string("4G " + chr(3) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
-  if b3_list[0] == "signal40":
-    lcd_string("4G " + chr(3) + chr(3) + chr(4) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
-  if b3_list[0] == "signal60":
-    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(4) + chr(4) + b3_list[1] + " " + chr(1) + b3_lkst[2],LCD_LINE_3)
-  if b3_list[0] == "signal80":
-    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(4) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
-  if b3_list[0] == "signal100":
-    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + b3_list[1] + " " + chr(1) + b3_list[2],LCD_LINE_3)
+  lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # up
+  lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
+  # get tx/rx stats
+  if len(disk_list[9]) == 20: b2=chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 19: b2=chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 18: b2=chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 17: b2=chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 16: b2= " " + chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 15: b2= " " + chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 14: b2= "  " + chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 13: b2= "  " + chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 12: b2= "   " + chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 11: b2= "   " + chr(5) + chr(7) + disk_list[9]
+  lcd_string(b2,LCD_LINE_2)
+  # get modem stats
+  if disk_list[6] == "signal0":
+    lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)  if disk_list[6] == "signal20":
+    lcd_string("4G " + chr(3) + chr(4) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
+  if disk_list[6] == "signal40":
+    lcd_string("4G " + chr(3) + chr(3) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
+  if disk_list[6] == "signal60":
+    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
+  if disk_list[6] == "signal80":
+    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
+  if disk_list[6] == "signal100":
+    lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
 
 def vol_get():
   global vol
@@ -163,24 +176,6 @@ def mpc_get():
     str_trail = " " + chr(2) + chr(2) + " " + vol
     station = str_head + station + str_trail
     return (station)
-
-def ud_get(b3_list):
-  #lcd_custom(1,[0x15,0x1F,0x15,0x04,0x04,0x04,0x0E,0x1F]) # reserved
-  #lcd_custom(3,[0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F,0x1F]) # reserved
-  #lcd_custom(4,[0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x1F]) # reserved
-  lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # up
-  lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
-  if len(b3_list[3]) == 20: b2=chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 19: b2=chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 18: b2=chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 17: b2=chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 16: b2= " " + chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 15: b2= " " + chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 14: b2= "  " + chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 13: b2= "  " + chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 12: b2= "   " + chr(5) + chr(7) + b3_list[3]
-  if len(b3_list[3]) == 11: b2= "   " + chr(5) + chr(7) + b3_list[3]
-  lcd_string(b2,LCD_LINE_2)
 
 def temp_time_get(b4):
   lcd_string("  " + chr(0) + b4 + " " + chr(6) + time.strftime("%H:%M:%S"),LCD_LINE_4)
@@ -226,16 +221,13 @@ def main():
 
   while True:
         lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
-
-        b3_list=open('/root/mpdlcd/lcd_b3.txt').read().splitlines()
         disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
 
         b4=lcd_b4.read()
         lcd_b4.close()
 
         mpd_head_get()
-        ud_get(b3_list)
-        ss_get(b3_list)
+        ss_get(disk_list)
         temp_time_get(b4)
 
         mpc_get()
@@ -243,8 +235,7 @@ def main():
 
         while (len(station) == 0):
                 mpd_head_get()
-                ud_get(b3_list)
-                ss_get(b3_list)
+                ss_get(disk_list)
                 mpc_get()
                 for h in range(20):
                         temp_time_get(b4)
@@ -283,10 +274,9 @@ def main():
                 if j == 0:
                         lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
-                        ud_get(b3_list)
                         temp_time_get(b4)
                         #lcd_string(str_pad,LCD_LINE_1)
-                        ss_get(b3_list)
+                        ss_get(disk_list)
                 if j == (len(station)//4):
                         lcd_text = station[j:(j+20)]
                         lcd_string(lcd_text,LCD_LINE_1)
@@ -306,7 +296,6 @@ def main():
                 if station != old_station: break
                 old_station=station
                 #time.sleep(0.5)
-        del b3_list[:]
         del disk_list[:]
 
 if __name__ == '__main__':
