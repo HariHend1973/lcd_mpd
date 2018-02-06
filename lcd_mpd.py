@@ -131,29 +131,39 @@ def ss_get(disk_list):
   lcd_custom(5,[0x02,0x06,0x0E,0x1E,0x06,0x06,0x06,0x06]) # up
   lcd_custom(7,[0x0C,0x0C,0x0C,0x0C,0x0F,0x0E,0x0C,0x08]) # down
   # get tx/rx stats
-  if len(disk_list[9]) == 20: b2=chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 19: b2=chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 18: b2=chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 17: b2=chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 16: b2= " " + chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 15: b2= " " + chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 14: b2= "  " + chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 13: b2= "  " + chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 12: b2= "   " + chr(5) + chr(7) + disk_list[9]
-  if len(disk_list[9]) == 11: b2= "   " + chr(5) + chr(7) + disk_list[9]
+  if len(disk_list[9]) == 20:
+    b2=chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 19:
+    b2=chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 18:
+    b2=chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 17:
+    b2=chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 16:
+    b2= " " + chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 15:
+    b2= " " + chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 14:
+    b2= "  " + chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 13:
+    b2= "  " + chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 12:
+    b2= "   " + chr(5) + chr(7) + disk_list[9]
+  elif len(disk_list[9]) == 11:
+    b2= "   " + chr(5) + chr(7) + disk_list[9]
   lcd_string(b2,LCD_LINE_2)
   # get modem stats
   if disk_list[6] == "signal0":
     lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
-  if disk_list[6] == "signal20":
+  elif disk_list[6] == "signal20":
     lcd_string("4G " + chr(3) + chr(4) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
-  if disk_list[6] == "signal40":
+  elif disk_list[6] == "signal40":
     lcd_string("4G " + chr(3) + chr(3) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
-  if disk_list[6] == "signal60":
+  elif disk_list[6] == "signal60":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
-  if disk_list[6] == "signal80":
+  elif disk_list[6] == "signal80":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
-  if disk_list[6] == "signal100":
+  elif disk_list[6] == "signal100":
     lcd_string("4G " + chr(3) + chr(3) + chr(3) + chr(3) + chr(3) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
 
 def mpc_status_get():
@@ -296,17 +306,17 @@ def main():
                 temp_time_get(b4)
                 #lcd_string(str_pad,LCD_LINE_1)
                 ss_get(disk_list)
-            if j == (len(station)//4):
+            elif j == (len(station)//4):
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 disk_get(disk_list)
                 temp_time_get(b4)
-            if j == (len(station)//4+len(station)//4):
+            elif j == (len(station)//4+len(station)//4):
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 mem_get(disk_list)
                 temp_time_get(b4)
-            if j == (len(station)//4+len(station)//4+len(station)//4):
+            elif j == (len(station)//4+len(station)//4+len(station)//4):
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 proc_get(disk_list)
