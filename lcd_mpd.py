@@ -18,6 +18,9 @@
 #
 # Modified by Pulpstone OpenWrt/LEDE
 # Date     : 21/12/2017
+# 
+# Modified by Hari Hendaryanto, january 2018
+# hari.h -at- kutukupret.com , hari.hendaryanto -at- gmail.com
 #
 # http://www.raspberrypi-spy.co.uk/
 #
