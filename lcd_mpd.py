@@ -249,7 +249,7 @@ def main():
             mpd_head_get()
             ss_get(disk_list)
             for h in range(20):
-			    mpc_get()
+                mpc_get()
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
@@ -257,7 +257,7 @@ def main():
             mpd_head_get()
             disk_get(disk_list)
             for h in range(20):
-			    mpc_get()
+                mpc_get()
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
@@ -265,7 +265,7 @@ def main():
             mpd_head_get()
             mem_get(disk_list)
             for h in range(20):
-			    mpc_get()
+                mpc_get()
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
@@ -273,7 +273,7 @@ def main():
             mpd_head_get()
             proc_get(disk_list)
             for h in range(20):
-			    mpc_get()
+                mpc_get()
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
