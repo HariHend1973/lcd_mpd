@@ -251,7 +251,7 @@ def main():
             for h in range(20):
                 temp_time_get(b4)
                 time.sleep(0.1)
-                    if len(station) != 0:break
+                if len(station) != 0:break
             mpc_get()
             if len(station) != 0:break
             mpd_head_get()
@@ -259,7 +259,7 @@ def main():
             for h in range(20):
                 temp_time_get(b4)
                 time.sleep(0.1)
-                    if len(station) != 0:break
+                if len(station) != 0:break
             mpc_get()
             if len(station) != 0:break
             mpd_head_get()
@@ -267,7 +267,7 @@ def main():
             for h in range(20):
                 temp_time_get(b4)
                 time.sleep(0.1)
-                    if len(station) != 0:break
+                if len(station) != 0:break
             mpc_get()
             if len(station) != 0:break
             mpd_head_get()
