@@ -244,6 +244,12 @@ def main():
         old_station = station
 
         while (len(station) == 0):
+            lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
+            disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
+
+            b4=lcd_b4.read()
+            lcd_b4.close()
+
             mpc_get()
             if len(station) != 0:break
             mpd_head_get()
