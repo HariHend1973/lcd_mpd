@@ -241,70 +241,70 @@ def main():
         old_station = station
 
         while (len(station) == 0):
-                mpc_get()
+            mpc_get()
+            if len(station) != 0:break
+            mpd_head_get()
+            ss_get(disk_list)
+            for h in range(20):
+                temp_time_get(b4)
+                time.sleep(0.1)
+                    if len(station) != 0:break
+            mpc_get()
+            if len(station) != 0:break
+            mpd_head_get()
+            disk_get(disk_list)
+            for h in range(20):
+                temp_time_get(b4)
+                time.sleep(0.1)
+                    if len(station) != 0:break
+            mpc_get()
+            if len(station) != 0:break
+            mpd_head_get()
+            mem_get(disk_list)
+            for h in range(20):
+                temp_time_get(b4)
+                time.sleep(0.1)
+                    if len(station) != 0:break
+            mpc_get()
+            if len(station) != 0:break
+            mpd_head_get()
+            proc_get(disk_list)
+            for h in range(20):
+                temp_time_get(b4)
+                time.sleep(0.1)
                 if len(station) != 0:break
-                mpd_head_get()
-                ss_get(disk_list)
-                for h in range(20):
-                        temp_time_get(b4)
-                        time.sleep(0.1)
-                        if len(station) != 0:break
-                mpc_get()
-                if len(station) != 0:break
-                mpd_head_get()
-                disk_get(disk_list)
-                for h in range(20):
-                        temp_time_get(b4)
-                        time.sleep(0.1)
-                        if len(station) != 0:break
-                mpc_get()
-                if len(station) != 0:break
-                mpd_head_get()
-                mem_get(disk_list)
-                for h in range(20):
-                        temp_time_get(b4)
-                        time.sleep(0.1)
-                        if len(station) != 0:break
-                mpc_get()
-                if len(station) != 0:break
-                mpd_head_get()
-                proc_get(disk_list)
-                for h in range(20):
-                        temp_time_get(b4)
-                        time.sleep(0.1)
-                        if len(station) != 0:break
-                mpc_get()
-                if len(station) != 0:break
+            mpc_get()
+            if len(station) != 0:break
 
         for j in range (0, len(station)):
+            lcd_text = station[j:(j+20)]
+            lcd_string(lcd_text,LCD_LINE_1)
+            temp_time_get(b4)
+            if j == 0:
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 temp_time_get(b4)
-                if j == 0:
-                        lcd_text = station[j:(j+20)]
-                        lcd_string(lcd_text,LCD_LINE_1)
-                        temp_time_get(b4)
-                        #lcd_string(str_pad,LCD_LINE_1)
-                        ss_get(disk_list)
-                if j == (len(station)//4):
-                        lcd_text = station[j:(j+20)]
-                        lcd_string(lcd_text,LCD_LINE_1)
-                        disk_get(disk_list)
-                        temp_time_get(b4)
-                if j == (len(station)//4+len(station)//4):
-                        lcd_text = station[j:(j+20)]
-                        lcd_string(lcd_text,LCD_LINE_1)
-                        mem_get(disk_list)
-                        temp_time_get(b4)
-                if j == (len(station)//4+len(station)//4+len(station)//4):
-                        lcd_text = station[j:(j+20)]
-                        lcd_string(lcd_text,LCD_LINE_1)
-                        proc_get(disk_list)
-                        temp_time_get(b4)
-                mpc_get()
-                if station != old_station: break
-                old_station=station
-                #time.sleep(0.5)
+                #lcd_string(str_pad,LCD_LINE_1)
+                ss_get(disk_list)
+            if j == (len(station)//4):
+                lcd_text = station[j:(j+20)]
+                lcd_string(lcd_text,LCD_LINE_1)
+                disk_get(disk_list)
+                temp_time_get(b4)
+            if j == (len(station)//4+len(station)//4):
+                lcd_text = station[j:(j+20)]
+                lcd_string(lcd_text,LCD_LINE_1)
+                mem_get(disk_list)
+                temp_time_get(b4)
+            if j == (len(station)//4+len(station)//4+len(station)//4):
+                lcd_text = station[j:(j+20)]
+                lcd_string(lcd_text,LCD_LINE_1)
+                proc_get(disk_list)
+                temp_time_get(b4)
+            mpc_get()
+            if station != old_station: break
+            old_station=station
+            #time.sleep(0.5)
         del disk_list[:]
 
 if __name__ == '__main__':
