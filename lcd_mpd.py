@@ -144,7 +144,8 @@ def ss_get(disk_list):
   lcd_string(b2,LCD_LINE_2)
   # get modem stats
   if disk_list[6] == "signal0":
-    lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)  if disk_list[6] == "signal20":
+    lcd_string("4G " + chr(4) + chr(4) + chr(4) + chr(4) + chr(4) + b3_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
+  if disk_list[6] == "signal20":
     lcd_string("4G " + chr(3) + chr(4) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
   if disk_list[6] == "signal40":
     lcd_string("4G " + chr(3) + chr(3) + chr(4) + chr(4) + chr(4) + disk_list[7] + " " + chr(1) + disk_list[8],LCD_LINE_3)
