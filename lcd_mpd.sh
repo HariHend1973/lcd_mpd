@@ -8,6 +8,6 @@ do
 done &
 /etc/init.d/mpd start >/dev/null 2>&1 &
 cd /root/mpdlcd/
-/usr/bin/python lcd_mpd.py >/dev/null 2>&1 &
-sh /root/mpdlcd/remote.sh > /dev/null 2>&1 &
+sleep 5 && /usr/bin/python lcd_mpd.py >/dev/null 2>&1 &
+sleep 5 && sh /root/mpdlcd/remote.sh > /dev/null 2>&1 &
 exit 0
