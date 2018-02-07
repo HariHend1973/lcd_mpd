@@ -240,6 +240,16 @@ def proc_get(disk_list):
   lcd_string(chr(1) + chr(3) + chr(4) + " " + disk_list[4], LCD_LINE_2)
   lcd_string(chr(1) + chr(3) + chr(4) + " " + disk_list[5], LCD_LINE_3)
 
+def file_stats_open():
+  global disk_list
+  global b4
+
+  lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
+  disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
+  b4=lcd_b4.read()
+  lcd_b4.close()
+  return(disk_list,b4)
+
 def main():
   # Main program block
 
@@ -250,11 +260,7 @@ def main():
   lcd_custom(6,[0x1F,0x1F,0x0E,0x04,0x04,0x0A,0x11,0x1F]) # clock
 
   while True:
-        lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
-        disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
-
-        b4=lcd_b4.read()
-        lcd_b4.close()
+        file_stats_open()
 
         mpd_head_get()
         ss_get(disk_list)
@@ -264,11 +270,7 @@ def main():
         old_station = station
 
         while (len(station) == 0):
-            lcd_b4=open("/root/mpdlcd/lcd_b4.txt",'r') # temp
-            disk_list=open("/root/mpdlcd/lcd_disk.txt").read().splitlines()
-
-            b4=lcd_b4.read()
-            lcd_b4.close()
+            file_stats_open()
 
             mpc_get()
             if len(station) != 0:break
