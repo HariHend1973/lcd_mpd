@@ -184,6 +184,10 @@ def mpc_status_get():
   volume=status[0] + " " + status[1]
   repeat=status[2] + " " + status[3]
   random=status[4] + " " + status[5]
+  volume=volume.replace("volume", "vol", 1)
+  repeat=repeat.replace("repeat", "rep", 1)
+  random=random.replace("random", "ran", 1)
+
   return (volume,repeat,random)
 
 def mpc_get():
@@ -196,8 +200,8 @@ def mpc_get():
     #station=station[:-1]
     station=station.rstrip()
     str_pad = " " * 20
-    str_head = str_pad + volume + " " + chr(2) + chr(2) + " "
-    str_trail = " " + chr(2) + chr(2) + " " + volume + " " + repeat + " " + random
+    str_head = str_pad + volume + " " + chr(2) + " "
+    str_trail = " " + chr(2) + " " + volume + " " + repeat + " " + random
     station = str_head + station + str_trail
     return (station)
 
@@ -320,27 +324,47 @@ def main():
             lcd_text = station[j:(j+20)]
             lcd_string(lcd_text,LCD_LINE_1)
             temp_time_get(b4)
-            if j == 0:
+            #if j == 0:
+            if j in range (0, len(station)//4):
+                file_stats_open()
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 temp_time_get(b4)
                 #lcd_string(str_pad,LCD_LINE_1)
                 ss_get(disk_list)
-            elif j == (len(station)//4):
+                mpc_get()
+                if station != old_station: break
+                old_station=station
+            #elif j == (len(station)//4):
+            elif j in range ((len(station)//4)+1, (len(station)//4)*2):
+                file_stats_open()
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 disk_get(disk_list)
                 temp_time_get(b4)
-            elif j == ((len(station)//4)*2):
+                mpc_get()
+                if station != old_station: break
+                old_station=station
+            #elif j == ((len(station)//4)*2):
+            elif j in range (((len(station)//4)*2)+1, (len(station)//4)*3):
+                file_stats_open()
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 mem_get(disk_list)
                 temp_time_get(b4)
-            elif j == ((len(station)//4)*3):
+                mpc_get()
+                if station != old_station: break
+                old_station=station
+            #elif j == ((len(station)//4)*3):
+            elif j in range (((len(station)//4)*3)+1, (len(station)//4)*4):
+                file_stats_open()
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 proc_get(disk_list)
                 temp_time_get(b4)
+                mpc_get()
+                if station != old_station: break
+                old_station=station
             mpc_get()
             if station != old_station: break
             old_station=station
