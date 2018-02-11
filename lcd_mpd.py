@@ -277,7 +277,9 @@ def main():
             mpd_head_get()
             ss_get(disk_list)
             for h in range(20):
+                file_stats_open()
                 mpc_get()
+                ss_get(disk_list)
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
@@ -285,7 +287,9 @@ def main():
             mpd_head_get()
             disk_get(disk_list)
             for h in range(20):
+                file_stats_open()
                 mpc_get()
+                disk_get(disk_list)
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
@@ -293,7 +297,9 @@ def main():
             mpd_head_get()
             mem_get(disk_list)
             for h in range(20):
+                file_stats_open()
                 mpc_get()
+                mem_get(disk_list)
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
@@ -301,13 +307,16 @@ def main():
             mpd_head_get()
             proc_get(disk_list)
             for h in range(20):
+                file_stats_open()
                 mpc_get()
+                proc_get(disk_list)
                 temp_time_get(b4)
                 time.sleep(0.1)
                 if len(station) != 0:break
             if len(station) != 0:break
 
         for j in range (0, len(station)):
+            file_stats_open()
             lcd_text = station[j:(j+20)]
             lcd_string(lcd_text,LCD_LINE_1)
             temp_time_get(b4)
@@ -322,12 +331,12 @@ def main():
                 lcd_string(lcd_text,LCD_LINE_1)
                 disk_get(disk_list)
                 temp_time_get(b4)
-            elif j == (len(station)//4+len(station)//4):
+            elif j == ((len(station)//4)*2):
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 mem_get(disk_list)
                 temp_time_get(b4)
-            elif j == (len(station)//4+len(station)//4+len(station)//4):
+            elif j == ((len(station)//4)*3):
                 lcd_text = station[j:(j+20)]
                 lcd_string(lcd_text,LCD_LINE_1)
                 proc_get(disk_list)
