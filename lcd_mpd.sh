@@ -2,7 +2,8 @@
 while true
 do
   echo "$(3ginfo 2> /dev/null)" > /tmp/3ginfotmp;
-  sleep 1;
+  # some delay :)
+  for i in {1..1000}; do echo $i > /dev/null; done
   echo -n "$(/root/mpdlcd/temp.sh)" > /root/mpdlcd/lcd_b4.txt;
   echo "$(/root/mpdlcd/disk.sh)" > /root/mpdlcd/lcd_disk.txt;
 done &
