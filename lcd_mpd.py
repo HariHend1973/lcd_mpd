@@ -319,7 +319,7 @@ def main():
                 if len(station) != 0:break
             if len(station) != 0:break
 
-        for j in range (0, len(station)):
+        for j in xrange (0, len(station), 3):
             file_stats_open()
             lcd_text = station[j:(j+20)]
             lcd_string(lcd_text,LCD_LINE_1)
