@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 while true
 do
   echo "$(3ginfo 2> /dev/null)" > /tmp/3ginfotmp;
