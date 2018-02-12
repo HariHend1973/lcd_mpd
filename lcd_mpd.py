@@ -357,10 +357,14 @@ def main():
                 mpc_get()
                 if station != old_station: break
                 old_station=station
-            mpc_get()
-            if station != old_station: break
-            old_station=station
-            #time.sleep(0.5)
+            else:
+                file_stats_open()
+                lcd_text = station[j:(j+20)]
+                lcd_string(lcd_text,LCD_LINE_1)
+                temp_time_get(b4)
+                mpc_get()
+                if station != old_station: break
+                old_station=station
         del disk_list[:]
 
 if __name__ == '__main__':
