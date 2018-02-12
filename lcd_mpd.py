@@ -319,12 +319,7 @@ def main():
                 if len(station) != 0:break
             if len(station) != 0:break
 
-        for j in xrange (0, len(station), 3):
-            file_stats_open()
-            lcd_text = station[j:(j+20)]
-            lcd_string(lcd_text,LCD_LINE_1)
-            temp_time_get(b4)
-            #if j == 0:
+        for j in xrange (0, len(station), 2):
             if j in range (0, len(station)//4):
                 file_stats_open()
                 lcd_text = station[j:(j+20)]
@@ -335,7 +330,6 @@ def main():
                 mpc_get()
                 if station != old_station: break
                 old_station=station
-            #elif j == (len(station)//4):
             elif j in range ((len(station)//4)+1, (len(station)//4)*2):
                 file_stats_open()
                 lcd_text = station[j:(j+20)]
@@ -345,7 +339,6 @@ def main():
                 mpc_get()
                 if station != old_station: break
                 old_station=station
-            #elif j == ((len(station)//4)*2):
             elif j in range (((len(station)//4)*2)+1, (len(station)//4)*3):
                 file_stats_open()
                 lcd_text = station[j:(j+20)]
@@ -355,7 +348,6 @@ def main():
                 mpc_get()
                 if station != old_station: break
                 old_station=station
-            #elif j == ((len(station)//4)*3):
             elif j in range (((len(station)//4)*3)+1, (len(station)//4)*4):
                 file_stats_open()
                 lcd_text = station[j:(j+20)]
